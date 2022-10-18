@@ -1,5 +1,4 @@
 #!/bin/bash
-chmod +x run
 
 git clone https://github.com/prowler-cloud/prowler
 cd prowler
