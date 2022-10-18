@@ -3,4 +3,4 @@ chmod +x run
 
 git clone https://github.com/prowler-cloud/prowler
 cd prowler
-./prowler -m csv -f us-east-1,us-west-2
+./prowler -M csv -f us-east-1,us-west-2
