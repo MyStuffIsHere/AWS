@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Bash Script to download and install the required programs for Eval, move the output files to 
+# Home directory, then remove programs
+
 # Prowler install and run
 git clone https://github.com/prowler-cloud/prowler
 cd prowler
@@ -9,8 +12,14 @@ ls
 mv *.csv /home/cloudshell-user/
 cd /home/cloudshell-user
 
+
+
 # Cloudsplaining install and run
 # pip3 install --user cloudsplaining
 # cloudsplaining download
 # cloudsplaining create-exclusions-file
 # cloudsplaining scan --exclusions-file exclusions.yml --input-file default.json
+
+
+# rm -r AWS
+# pip3 uninstall cloudsplaining
