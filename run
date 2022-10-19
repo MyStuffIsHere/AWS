@@ -18,9 +18,6 @@ cloudsplaining download
 cloudsplaining create-exclusions-file
 cloudsplaining scan --exclusions-file exclusions.yml --input-file default.json
 
-# getting the account ID
-aws sts get-caller-identity
-
 cd /home/cloudshell-user
 ls
 
@@ -33,3 +30,8 @@ rm exclusions.yml
 
 # zipping files to export as one file - need to rename with account id after download
 zip -r aws-script-export-acct-.zip *
+
+# getting the account ID
+aws sts get-caller-identity
+
+ls
