@@ -29,3 +29,6 @@ rm -r AWS
 pip3 uninstall cloudsplaining
 rm default.json
 rm exclusions.yml
+
+# zipping files to export as one file - need to rename with account id after download
+zip -r aws-script-export-acct-.zip *
