@@ -32,7 +32,7 @@ ls
 act_id=$(aws sts get-caller-identity --query "Account" --output text)
 
 # removing the things
-rm -r -f AWS
+# rm -r -f AWS
 pip3 uninstall -y cloudsplaining
 
 # removing files used for running scan
