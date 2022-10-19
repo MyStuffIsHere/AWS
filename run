@@ -25,8 +25,9 @@ cd /home/cloudshell-user
 ls
 
 # removing the things
-rm -r AWS
-pip3 uninstall cloudsplaining
+rm -r -f AWS
+pip3 uninstall -y cloudsplaining
+
 rm default.json
 rm exclusions.yml
 
