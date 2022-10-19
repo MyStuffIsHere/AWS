@@ -2,6 +2,7 @@
 
 # Bash Script to download and install the required programs for Eval, move the output files to 
 # Home directory, then remove programs
+# created 10/19 - kbennett
 
 # Prowler install and run
 git clone https://github.com/prowler-cloud/prowler
@@ -12,7 +13,7 @@ cd prowler
 cd /home/cloudshell-user/AWS/prowler/output
 mv *.csv /home/cloudshell-user/
 
-# Cloudsplaining install and run
+# Cloudsplaining install and running scan
 pip3 install --user cloudsplaining
 cloudsplaining download
 cloudsplaining create-exclusions-file
@@ -21,17 +22,24 @@ cloudsplaining scan --exclusions-file exclusions.yml --input-file default.json
 cd /home/cloudshell-user
 ls
 
+# getting the account ID
+act_id=$(aws sts get-caller-identity --query "Account" --output text)
+
 # removing the things
 rm -r -f AWS
 pip3 uninstall -y cloudsplaining
 
+# removing files used for running scan
 rm default.json
 rm exclusions.yml
 
-# zipping files to export as one file - need to rename with account id after download
-zip -r aws-script-export-acct-.zip *
+# renaming output files to include account id
+mv iam-findings-default.json iam-findings-$act_id.json
+mv iam-report-default.html iam-remote-$act_id.html
+mv iam-results-default.json iam-results-$act_id.json
 
-# getting the account ID
-aws sts get-caller-identity
+# zipping files to export as one file
+zip -r aws-script-export-acct-$act_id.zip *
 
+# ls so you can see the file to download
 ls
