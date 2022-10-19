@@ -7,12 +7,10 @@
 git clone https://github.com/prowler-cloud/prowler
 cd prowler
 ./prowler -M csv -f us-east-1,us-west-2
+
+# goes to output folder and moves the file to cloudshell-user home for ease of download
 cd /home/cloudshell-user/AWS/prowler/output
-ls
 mv *.csv /home/cloudshell-user/
-cd /home/cloudshell-user
-
-
 
 # Cloudsplaining install and run
 pip3 install --user cloudsplaining
@@ -23,6 +21,11 @@ cloudsplaining scan --exclusions-file exclusions.yml --input-file default.json
 # getting the account ID
 aws sts get-caller-identity
 
+cd /home/cloudshell-user
+ls
+
 # removing the things
 rm -r AWS
 pip3 uninstall cloudsplaining
+rm default.json
+rm exclusions.yml
