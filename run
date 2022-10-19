@@ -17,6 +17,8 @@ cd prowler
 cd /home/cloudshell-user/AWS/prowler/output
 mv *.csv /home/cloudshell-user/
 
+cd /home/cloudshell-user
+
 # Cloudsplaining install and running scan
 pip3 install --user cloudsplaining
 cloudsplaining download
