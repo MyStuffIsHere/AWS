@@ -27,11 +27,10 @@ cloudsplaining scan --exclusions-file exclusions.yml --input-file default.json
 
 cd /home/cloudshell-user
 ls
-cd ..
-
 
 # getting the account ID
 act_id=$(aws sts get-caller-identity --query "Account" --output text)
+cd ..
 
 # removing the things
 # rm -r -f AWS
