@@ -5,6 +5,7 @@
 # created 10/19 - kbennett
 
 # Prowler install and run
+cd AWS
 git clone https://github.com/prowler-cloud/prowler
 cd prowler
 # running by region
