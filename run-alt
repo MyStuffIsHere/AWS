@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Bash Script to download and install the required programs for Eval, move the output files to 
+# Home directory, then remove programs
+# created 10/19 - kbennett
+
+# Prowler install and run
+git clone https://github.com/prowler-cloud/prowler
+cd prowler
+# running by region
+#./prowler -M csv -f us-east-1,us-west-2
+
+# Uncomment below if you would like to run by check
+./prowler -M csv -f us-east-1,us-west-2 -E check112,check113,check12,check13,check19,check21,check23,check41,check42,extra710,extra711,extra713,extra7134,extra7135,extra7136,extra7137,extra716,extra717,extra718,extra719,extra72,extra720,extra722,extra723,extra725,extra73,extra736,extra74,extra741,extra748,extra750,extra751,extra752,extra753,extra754,extra755,extra759,extra76,extra760,extra768,extra77,extra779,extra78,extra795,extra796,extra798,extra786,extra73
+
+# goes to output folder and moves the file to cloudshell-user home for ease of download
+cd /home/cloudshell-user/AWS/prowler/output
+mv *.csv /home/cloudshell-user/
+
+cd /home/cloudshell-user
+
+# Cloudsplaining install and running scan
+pip3 install --user cloudsplaining
+cloudsplaining download
+cloudsplaining create-exclusions-file
+cloudsplaining scan --exclusions-file exclusions.yml --input-file default.json
+
+cd /home/cloudshell-user
+ls
+
+# getting the account ID
+act_id=$(aws sts get-caller-identity --query "Account" --output text)
+
+# removing the things
+# rm -r -f AWS
+pip3 uninstall -y cloudsplaining
+
+# removing files used for running scan
+rm default.json
+rm exclusions.yml
+
+# renaming output files to include account id
+mv iam-findings-default.json iam-findings-$act_id.json
+mv iam-report-default.html iam-remote-$act_id.html
+mv iam-results-default.json iam-results-$act_id.json
+
+# zipping files to export as one file
+zip -r aws-script-export-acct-$act_id.zip *
+
+# ls so you can see the file to download
+ls
