@@ -3,6 +3,7 @@
 # Bash Script to download and install the required programs for Eval, move the output files to 
 # Home directory, then remove programs
 # created 10/19 - kbennett
+# updated 12/2 - kbennett - made file executable and recommited
 
 # Prowler install and run
 git clone https://github.com/prowler-cloud/prowler
